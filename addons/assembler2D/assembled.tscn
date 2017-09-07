@@ -9,4 +9,10 @@ script/script = ExtResource( 1 )
 
 [node name="part_example" parent="." instance=ExtResource( 2 )]
 
+transform/pos = Vector2( 159, 115 )
+
+[node name="part_example1" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 361, 135 )
+
 
