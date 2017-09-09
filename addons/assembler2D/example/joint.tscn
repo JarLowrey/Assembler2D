@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://addons/assembler2D/square-outline.png" type="Texture" id=1]
+[ext_resource path="res://addons/assembler2D/example/square-outline.png" type="Texture" id=1]
 
 [node name="joint" type="Position2D"]
 
