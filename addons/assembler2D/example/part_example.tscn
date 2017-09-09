@@ -27,7 +27,7 @@ angular_damp = 1.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 
-transform/pos = Vector2( 1.39178, -1.39178 )
+transform/pos = Vector2( 1.50777, -1.39178 )
 polygon = Vector2Array( 0, 0, 40, 0, 40, 40, 0, 40 )
 uv = Vector2Array( 0, 0, 40, 0, 40, 40, 0, 40 )
 color = Color( 1, 1, 1, 1 )
