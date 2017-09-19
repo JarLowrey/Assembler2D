@@ -1,8 +1,6 @@
 extends Node2D
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
 	pass
 	
 func nearest_join(given_joint):
@@ -15,3 +13,9 @@ func nearest_join(given_joint):
 				dist = dist_to_new_joint
 				nearest_joint = joint
 	return nearest_joint
+
+func get_parts():
+	var parts = []
+	for child in get_children():
+		parts.append(child)
+	return parts
