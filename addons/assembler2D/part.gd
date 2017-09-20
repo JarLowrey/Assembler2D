@@ -27,7 +27,7 @@ func search_for_connections(assembler):
 					var dist = jt.get_global_pos().distance_to(other_jt.get_global_pos())
 					if dist < max_d:
 						connections.append({'mine':jt, 'theirs': other_jt})
-	print(connections)
+	#print(connections)
 	return connections
 
 func connect_joints():
@@ -35,12 +35,14 @@ func connect_joints():
 	
 	if nearby_joints.size() == 0:
 		return
-		
+	
 	var cnct_joints = nearby_joints[0]
 	
 	#set proper rotation
-	var rotd_diff = get_global_rotd() + cnct_joints.mine.get_global_rotd()
-	set_global_rotd(cnct_joints.theirs.get_global_rotd())
+	var normal_diff_ang = cnct_joints.mine.normal_angle - cnct_joints.theirs.normal_angle
+	if abs(normal_diff_ang) >= 180:
+		normal_diff_ang += -sign(normal_diff_ang) * 180
+	set_global_rotd(get_global_rotd() + normal_diff_ang)
 	
 	#set proper position
 	var diff_vector = get_global_pos() - cnct_joints.mine.get_global_pos()

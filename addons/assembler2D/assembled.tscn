@@ -9,11 +9,8 @@ script/script = ExtResource( 1 )
 
 [node name="part_example" parent="." instance=ExtResource( 2 )]
 
-auto_create_joints = true
-
 [node name="part_example1" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 54.9648, 37.5925 )
-auto_create_joints = true
 
 

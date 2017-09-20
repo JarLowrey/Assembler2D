@@ -20,6 +20,14 @@ func _input(event):
 			dragged_part.connect_joints()
 			dragged_part = null
 		elif event.is_action_pressed("ui_left"):
-			dragged_part.set_rotd(dragged_part.get_rotd() + 45)
+			var rot = _round_to(dragged_part.get_rotd(), 45)
+			dragged_part.set_rotd(rot)
 		elif event.is_action_pressed("ui_right"):
-			dragged_part.set_rotd(dragged_part.get_rotd() - 45)
+			var rot = _round_to(dragged_part.get_rotd(), -45)
+			dragged_part.set_rotd(rot)
+
+func _round_to(val, div):
+	val = abs(int(val))
+	val -= val % abs((div))
+	return val + div
+	
