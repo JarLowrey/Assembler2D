@@ -1,16 +1,21 @@
 tool
 extends Position2D
 
-onready var in_editor = get_tree().is_editor_hint()
 
-export(Vector2) var normal = null
-export(Vector2) var show_normal_vector = true
+export(float) var normal_angle = 0 setget set_normal_angle
 
 var connected_to = null
+onready var in_editor = get_tree().is_editor_hint()
 
 func _ready():
 	pass
 
 func _draw():
-	if in_editor and normal != null and show_normal_vector:
-		draw_line(Vector2(0,0), normal, Color(255, 0, 0), 1)
+#	if in_editor:
+	var ang = deg2rad(normal_angle)
+	var normal = Vector2(cos(ang), sin(ang)) * 1000
+	draw_line(Vector2(0,0), normal, Color(255, 0, 0), 1)
+
+func set_normal_angle(val):
+	normal_angle = val
+	update()
