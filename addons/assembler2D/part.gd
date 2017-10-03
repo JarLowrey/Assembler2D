@@ -30,6 +30,9 @@ func search_for_connections(assembler):
 	#print(connections)
 	return connections
 
+func norm_angle(val):
+	return val+360 if val < 0 else val
+
 func connect_joints():
 	var nearby_joints = search_for_connections(get_node("/root/assembled"))
 	
@@ -39,10 +42,10 @@ func connect_joints():
 	var cnct_joints = nearby_joints[0]
 	
 	#set proper rotation
-	var normal_diff_ang = cnct_joints.mine.normal_angle - cnct_joints.theirs.normal_angle
-	if abs(normal_diff_ang) >= 180:
-		normal_diff_ang += -sign(normal_diff_ang) * 180
-	set_global_rotd(get_global_rotd() + normal_diff_ang)
+	var start = cnct_joints.mine.normal
+	var end = -cnct_joints.theirs.normal.rotated(cnct_joints.theirs.get_global_rot())
+	var ang = start.angle_to(end)
+	set_global_rot(ang)
 	
 	#set proper position
 	var diff_vector = get_global_pos() - cnct_joints.mine.get_global_pos()
@@ -76,9 +79,7 @@ func _create_joint(start_pos, end_pos, joint_node,reverse_normal = false):
 	var nd = joint_node.instance()
 	get_node("Area2D/CollisionPolygon2D").add_child(nd)
 	nd.set_pos(pos)
-	var normal = rad2deg(atan(-dx/dy))
-	if reverse_normal:
-		normal += 180 #ensures normal always points towards outside of polygon
-	nd.set_normal_angle( normal )
+	var normal = Vector2(dy,-dx)
+	nd.set_normal( normal )
 	
 	return nd

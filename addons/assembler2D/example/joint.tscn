@@ -7,7 +7,7 @@
 
 transform/scale = Vector2( 0.025, 0.025 )
 script/script = ExtResource( 1 )
-normal_angle = 0
+normal = Vector2( 0, 0 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
